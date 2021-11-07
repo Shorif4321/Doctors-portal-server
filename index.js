@@ -34,13 +34,11 @@ async function verifyToken(req, res, next) {
 
         }
 
-
     }
 
     next()
 
 }
-
 
 async function run() {
     try {
@@ -52,7 +50,7 @@ async function run() {
         //get appointment
         app.get('/appointments', verifyToken, async (req, res) => {
             const email = req.query.email;
-            const date = new Date(req.query.date).toLocaleDateString();
+            const date = req.query.date;
             console.log(date)
             const query = { email: email, date: date }
             const cursor = appointmentCollection.find(query);
